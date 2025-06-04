@@ -1,101 +1,56 @@
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-const dialogueBox = document.getElementById('dialogueBox');
-const winScreen = document.getElementById('winScreen');
-
-const duck = { x: 100, y: 300, width: 50, height: 50, dy: 0, gravity: 0.5, jump: -10 };
-const obstacles = [];
-let frameCount = 0;
-let currentDay = 0;
-
-const dialogues = [
-  "Day 1: Quackers jumps into the pool! Peep floats on a flamingo!",
-  "Day 2: Sandcastles and wave-jumping at the beach!",
-  "Day 3: Shell hunting and crab surprises!",
-  "Day 4: Pirate adventure and market shopping!",
-  "Day 5: Karaoke night! Ducklings sing a silly song!",
-  "Day 6: Treasure hunt around Arcos Playa!",
-  "Day 7: Boat trip and dolphins spotted!",
-  "Day 8: Ice cream, sandcastles, and fun in S'Illot!",
-  "Day 9: Time to go home. See you next year!"
+const locations = [
+  {
+    title: "S'Illot Beach",
+    desc: "A serene beach with white sands and calm turquoise waters—perfect for relaxing or snorkeling.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/f/f4/S%27Illot_Mallorca_beach.jpg"
+  },
+  {
+    title: "Punta de n'Amer",
+    desc: "This nature reserve features coastal views, historic watchtowers, and scenic walking paths.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Sa_Punta_de_n%27Amer.JPG"
+  },
+  {
+    title: "Sa Foradada",
+    desc: "An iconic cliff with a hole, offering one of the best sunset views in Mallorca.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Sa_Foradada.jpg"
+  },
+  {
+    title: "Cuevas del Drach",
+    desc: "Explore stunning underground caves and enjoy a classical concert on Lake Martel.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Cuevas_del_Drach_Mallorca_Spain.jpg"
+  },
+  {
+    title: "Cap de Formentor",
+    desc: "A dramatic cape with breathtaking cliffs and endless views of the Mediterranean Sea.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Cap_Formentor.jpg"
+  }
 ];
 
-function drawDuck() {
-  ctx.fillStyle = 'yellow';
-  ctx.fillRect(duck.x, duck.y, duck.width, duck.height);
+let current = 0;
+
+const imgEl = document.getElementById("location-img");
+const titleEl = document.getElementById("location-title");
+const descEl = document.getElementById("location-desc");
+const btn = document.getElementById("next-btn");
+
+function showLocation(index) {
+  const loc = locations[index];
+  imgEl.src = loc.img;
+  titleEl.textContent = loc.title;
+  descEl.textContent = loc.desc;
 }
 
-function drawObstacles() {
-  ctx.fillStyle = 'brown';
-  obstacles.forEach(ob => {
-    ctx.fillRect(ob.x, ob.y, ob.width, ob.height);
-  });
-}
-
-function updateObstacles() {
-  if (frameCount % 120 === 0) {
-    obstacles.push({ x: 800, y: 350, width: 30, height: 50 });
-  }
-  obstacles.forEach(ob => {
-    ob.x -= 5;
-  });
-}
-
-function checkCollision() {
-  for (let ob of obstacles) {
-    if (
-      duck.x < ob.x + ob.width &&
-      duck.x + duck.width > ob.x &&
-      duck.y < ob.y + ob.height &&
-      duck.y + duck.height > ob.y
-    ) {
-      currentDay = 0;
-      dialogueBox.innerText = "Oops! Try again from Day 1!";
-      obstacles.length = 0;
-    }
-  }
-}
-
-function nextDay() {
-  if (currentDay < dialogues.length) {
-    dialogueBox.innerText = dialogues[currentDay];
-    currentDay++;
+btn.addEventListener("click", () => {
+  current++;
+  if (current < locations.length) {
+    showLocation(current);
   } else {
-    winScreen.style.display = 'flex';
-    dialogueBox.style.display = 'none';
-    clearInterval(gameLoop);
-  }
-}
-
-function game() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawDuck();
-  drawObstacles();
-  updateObstacles();
-
-  duck.dy += duck.gravity;
-  duck.y += duck.dy;
-
-  if (duck.y > 350) {
-    duck.y = 350;
-    duck.dy = 0;
-    nextDay();
-  }
-
-  checkCollision();
-  frameCount++;
-}
-
-let gameLoop = setInterval(game, 30);
-
-document.addEventListener('keydown', (e) => {
-  if (e.code === 'Space' || e.code === 'ArrowUp') {
-    if (duck.y >= 350) duck.dy = duck.jump;
+    titleEl.textContent = "🎉 You've explored Mallorca!";
+    descEl.textContent = "From stunning beaches to epic mountain views, we hope you had a great journey!";
+    imgEl.src = "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Majorca.svg";
+    btn.textContent = "Start Over";
+    current = -1; // Reset for restart
   }
 });
 
-// Touch controls
-document.addEventListener('touchstart', () => {
-  if (duck.y >= 350) duck.dy = duck.jump;
-});
-
+showLocation(current);
