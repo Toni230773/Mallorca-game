@@ -1,56 +1,30 @@
-const locations = [
-  {
-    title: "S'Illot Beach",
-    desc: "A serene beach with white sands and calm turquoise waters—perfect for relaxing or snorkeling.",
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/f4/S%27Illot_Mallorca_beach.jpg"
-  },
-  {
-    title: "Punta de n'Amer",
-    desc: "This nature reserve features coastal views, historic watchtowers, and scenic walking paths.",
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Sa_Punta_de_n%27Amer.JPG"
-  },
-  {
-    title: "Sa Foradada",
-    desc: "An iconic cliff with a hole, offering one of the best sunset views in Mallorca.",
-    img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Sa_Foradada.jpg"
-  },
-  {
-    title: "Cuevas del Drach",
-    desc: "Explore stunning underground caves and enjoy a classical concert on Lake Martel.",
-    img: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Cuevas_del_Drach_Mallorca_Spain.jpg"
-  },
-  {
-    title: "Cap de Formentor",
-    desc: "A dramatic cape with breathtaking cliffs and endless views of the Mediterranean Sea.",
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Cap_Formentor.jpg"
-  }
-];
 
-let current = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  const duck = document.getElementById("duck");
+  let posX = 100;
+  let posY = 0;
+  let velocityY = 0;
+  let isJumping = false;
 
-const imgEl = document.getElementById("location-img");
-const titleEl = document.getElementById("location-title");
-const descEl = document.getElementById("location-desc");
-const btn = document.getElementById("next-btn");
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") posX += 10;
+    if (e.key === "ArrowLeft") posX -= 10;
+    if (e.key === " " && !isJumping) {
+      velocityY = -15;
+      isJumping = true;
+    }
+    duck.style.left = posX + "px";
+  });
 
-function showLocation(index) {
-  const loc = locations[index];
-  imgEl.src = loc.img;
-  titleEl.textContent = loc.title;
-  descEl.textContent = loc.desc;
-}
-
-btn.addEventListener("click", () => {
-  current++;
-  if (current < locations.length) {
-    showLocation(current);
-  } else {
-    titleEl.textContent = "🎉 You've explored Mallorca!";
-    descEl.textContent = "From stunning beaches to epic mountain views, we hope you had a great journey!";
-    imgEl.src = "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Majorca.svg";
-    btn.textContent = "Start Over";
-    current = -1; // Reset for restart
-  }
+  setInterval(() => {
+    if (isJumping) {
+      velocityY += 1;
+      posY += velocityY;
+      if (posY > 0) {
+        posY = 0;
+        isJumping = false;
+      }
+      duck.style.bottom = (50 + posY) + "px";
+    }
+  }, 30);
 });
-
-showLocation(current);
