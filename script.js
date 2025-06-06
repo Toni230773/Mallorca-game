@@ -259,7 +259,6 @@ const progressBar = document.querySelector(".progress-bar");
 const feedback = document.querySelector(".feedback");
 
 function showQuestion() {
-  resetState();
   const currentQuestion = quizData[(currentLevel - 1) * questionsPerLevel + currentQuestionIndex];
   questionElement.innerText = currentQuestion.question;
 
