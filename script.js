@@ -1,4 +1,4 @@
-const questions = const quizData = [
+const questions = [
   {
     question: "What is the capital city of Mallorca?",
     answers: ["Palma", "Inca", "Manacor", "Sóller"],
