@@ -317,6 +317,7 @@ function saveState() {
 }
 
 nextButton.addEventListener("click", () => {
+ resetState();
   currentQuestionIndex++;
   if (currentQuestionIndex < questionsPerLevel) {
     showQuestion();
