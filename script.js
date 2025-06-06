@@ -170,7 +170,6 @@ function showQuestion() {
 
 function resetState() {
   answersEl.innerHTML = "";
-  nextBtn.style.display = "none";
   scoreEl.innerText = "";
 }
 
