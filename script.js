@@ -177,9 +177,10 @@ function loadQuestions() {
   showQuestion();
 }
 
-// Optional: Background Music
+/* Optional: Background Music
 const music = new Audio("audio/background.mp3");
 document.getElementById("play-music").addEventListener("click", () => music.play());
 document.getElementById("pause-music").addEventListener("click", () => music.pause());
+*/
 
 loadQuestions();
