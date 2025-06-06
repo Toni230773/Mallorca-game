@@ -2,35 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mallorca Quiz Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="quiz-container">
-    <div id="intro-screen">
-      <h1>🏝️ Mallorca Quiz Adventure</h1>
-      <p>Test your knowledge across 5 levels about Mallorca's culture, geography, food, and more!</p>
-      <button id="start-btn">Start Quiz</button>
-    </div>
 
-    <div id="quiz-screen" style="display:none">
-      <div id="level-info">Level: <span id="level-number">1</span></div>
-      <div id="question-box">
-        <p id="question-text"></p>
-        <div id="answers"></div>
-      </div>
-      <div id="feedback"></div>
-      <button id="next-btn" style="display:none">Next</button>
-    </div>
+  <div class="quiz-container">
+    <h1 id="question">Loading question...</h1>
+    <div id="answer-buttons" class="btn-grid"></div>
+    <div class="feedback"></div>
+    <button id="next-btn">Next</button>
 
-    <div id="result-screen" style="display:none">
-      <h2>🎉 Quiz Completed!</h2>
-      <p>Your score: <span id="final-score"></span> / 100</p>
-      <button onclick="restartGame()">Play Again</button>
+    <div class="progress">
+      <div class="progress-bar"></div>
     </div>
   </div>
 
   <script src="script.js"></script>
+
 </body>
 </html>
