@@ -1,68 +1,244 @@
 // script.js
 
-const quizData = [
-  [
+ const quizData = [
   // --- Level 1: Geography & Nature ---
-  { level: 1, question: "What is the capital city of Mallorca?", answers: ["Palma", "Soller", "Valldemossa", "Inca"], correct: 0 },
-  { level: 1, question: "Which sea surrounds Mallorca?", answers: ["Mediterranean", "Adriatic", "Ionian", "Aegean"], correct: 0 },
-  { level: 1, question: "Which mountain range is a UNESCO World Heritage Site?", answers: ["Serra de Tramuntana", "Alps", "Pyrenees", "Montseny"], correct: 0 },
-  { level: 1, question: "What is the highest mountain in Mallorca?", answers: ["Puig Major", "Puig de Massanella", "Puig Tomir", "Na Burguesa"], correct: 0 },
-  { level: 1, question: "Where can you find a famous cliff viewpoint in the north of Mallorca?", answers: ["Cap de Formentor", "Sa Calobra", "Alcudia", "Cala d'Or"], correct: 0 },
-  { level: 1, question: "Which beach is closest to S'Illot?", answers: ["S'Illot Beach", "Cala Millor", "Sa Coma", "Es Trenc"], correct: 0 },
-  { level: 1, question: "Which natural park is near S'Illot?", answers: ["Punta de n'Amer", "S'Albufera", "Mondragó", "Llevant"], correct: 0 },
-  { level: 1, question: "Which cove is famous for its beauty and is close to Deià?", answers: ["Sa Foradada", "Cala Ratjada", "Cala d'Or", "Cala Millor"], correct: 0 },
-  { level: 1, question: "Which town is surrounded by orange groves and has a vintage train?", answers: ["Sóller", "Pollença", "Palma", "Manacor"], correct: 0 },
-  { level: 1, question: "What is a famous lake inside the Cuevas del Drach?", answers: ["Lake Martel", "Lake Soller", "Lake Palma", "Lake Tramuntana"], correct: 0 },
+  {
+    question: "What is the capital city of Mallorca?",
+    answers: [
+      { text: "Palma", correct: true },
+      { text: "Soller", correct: false },
+      { text: "Valldemossa", correct: false },
+      { text: "Inca", correct: false }
+    ]
+  },
+  {
+    question: "Which sea surrounds Mallorca?",
+    answers: [
+      { text: "Mediterranean", correct: true },
+      { text: "Adriatic", correct: false },
+      { text: "Ionian", correct: false },
+      { text: "Aegean", correct: false }
+    ]
+  },
+  {
+    question: "Which mountain range is a UNESCO World Heritage Site?",
+    answers: [
+      { text: "Serra de Tramuntana", correct: true },
+      { text: "Alps", correct: false },
+      { text: "Pyrenees", correct: false },
+      { text: "Montseny", correct: false }
+    ]
+  },
+  {
+    question: "What is the highest mountain in Mallorca?",
+    answers: [
+      { text: "Puig Major", correct: true },
+      { text: "Puig de Massanella", correct: false },
+      { text: "Puig Tomir", correct: false },
+      { text: "Na Burguesa", correct: false }
+    ]
+  },
+  {
+    question: "Where can you find a famous cliff viewpoint in the north of Mallorca?",
+    answers: [
+      { text: "Cap de Formentor", correct: true },
+      { text: "Sa Calobra", correct: false },
+      { text: "Alcudia", correct: false },
+      { text: "Cala d'Or", correct: false }
+    ]
+  },
+  {
+    question: "What is the approximate land area of Mallorca?",
+    answers: [
+      { text: "1,420 square miles", correct: true },
+      { text: "1,000 square miles", correct: false },
+      { text: "2,500 square miles", correct: false },
+      { text: "3,000 square miles", correct: false }
+    ]
+  },
+  {
+    question: "Which town is known for its pearl industry?",
+    answers: [
+      { text: "Manacor", correct: true },
+      { text: "Inca", correct: false },
+      { text: "Sineu", correct: false },
+      { text: "Pollensa", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the island located south of Mallorca, known for its national park?",
+    answers: [
+      { text: "Cabrera", correct: true },
+      { text: "Menorca", correct: false },
+      { text: "Ibiza", correct: false },
+      { text: "Formentera", correct: false }
+    ]
+  },
+  {
+    question: "Which town is famous for its orange groves and scenic train ride?",
+    answers: [
+      { text: "Sóller", correct: true },
+      { text: "Valldemossa", correct: false },
+      { text: "Deià", correct: false },
+      { text: "Andratx", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the fertile central plain of Mallorca?",
+    answers: [
+      { text: "Es Pla", correct: true },
+      { text: "Serra de Llevant", correct: false },
+      { text: "Serra de Tramuntana", correct: false },
+      { text: "Es Raiguer", correct: false }
+    ]
+  },
+  {
+    question: "Which bay is located on the northeast coast of Mallorca?",
+    answers: [
+      { text: "Badia d'Alcúdia", correct: true },
+      { text: "Badia de Palma", correct: false },
+      { text: "Badia de Pollença", correct: false },
+      { text: "Badia de Sóller", correct: false }
+    ]
+  },
+  {
+    question: "What is the second highest peak in Mallorca?",
+    answers: [
+      { text: "Puig de Massanella", correct: true },
+      { text: "Puig Tomir", correct: false },
+      { text: "Puig de l'Ofre", correct: false },
+      { text: "Puig del Teix", correct: false }
+    ]
+  },
+  {
+    question: "Which natural formation is located near Porto Cristo and is famous for its underground lake?",
+    answers: [
+      { text: "Coves del Drach", correct: true },
+      { text: "Coves dels Hams", correct: false },
+      { text: "Cova de sa Campana", correct: false },
+      { text: "Cova de Genova", correct: false }
+    ]
+  },
+  {
+    question: "Which area in Mallorca is known for its wetlands and birdwatching opportunities?",
+    answers: [
+      { text: "S'Albufera", correct: true },
+      { text: "Es Trenc", correct: false },
+      { text: "Cala Mondragó", correct: false },
+      { text: "Sa Dragonera", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the small island off the southwest coast of Mallorca, designated as a nature reserve?",
+    answers: [
+      { text: "Sa Dragonera", correct: true },
+      { text: "Illa de Cabrera", correct: false },
+      { text: "Illa de Formentor", correct: false },
+      { text: "Illa de l'Aire", correct: false }
+    ]
+  },
+  {
+    question: "Which region in Mallorca is characterized by rolling hills and is located in the eastern part of the island?",
+    answers: [
+      { text: "Serra de Llevant", correct: true },
+      { text: "Es Pla", correct: false },
+      { text: "Raiguer", correct: false },
+      { text: "Migjorn", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the cave system known for its unique formations and located near Porto Cristo?",
+    answers: [
+      { text: "Coves dels Hams", correct: true },
+      { text: "Coves del Drach", correct: false },
+      { text: "Cova de sa Campana", correct: false },
+      { text: "Cova de Genova", correct: false }
+    ]
+  },
+  {
+    question: "Which mountain in Mallorca is known for its monastery and panoramic views?",
+    answers: [
+      { text: "Puig de Randa", correct: true },
+      { text: "Puig Major", correct: false },
+      { text: "Puig de Massanella", correct: false },
+      { text: "Puig Tomir", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the beach located near the town of Campos, known for its white sand and clear waters?",
+    answers: [
+      { text: "Es Trenc", correct: true },
+      { text: "Cala Millor", correct: false },
+      { text: "Cala d'Or", correct: false },
+      { text: "Cala Agulla", correct: false }
+    ]
+  },
+  {
+    question: "Which town is located at the foot of the Serra de Tramuntana and is known for its traditional architecture?",
+    answers: [
+      { text: "Bunyola", correct: true },
+      { text: "Inca", correct: false },
+      { text: "Felanitx", correct: false },
+      { text: "Porreres", correct: false }
+    ]
+  },
 
-  // --- Level 2: Culture ---
-  { level: 2, question: "What is 'pa amb oli' made from?", answers: ["Bread, tomato, olive oil", "Rice and fish", "Potatoes and pork", "Egg and sausage"], correct: 0 },
-  { level: 2, question: "What is the name of Mallorca's traditional sweet pastry?", answers: ["Ensaimada", "Croissant", "Churro", "Tarta de Santiago"], correct: 0 },
-  { level: 2, question: "What is 'sobrassada'?", answers: ["Cured sausage", "Fish stew", "Goat cheese", "Almond cake"], correct: 0 },
-  { level: 2, question: "What language do many locals speak in addition to Spanish?", answers: ["Catalan", "French", "Portuguese", "Italian"], correct: 0 },
-  { level: 2, question: "Which monastery did Chopin stay in during winter?", answers: ["Valldemossa", "Lluch", "Deià", "Manacor"], correct: 0 },
-  { level: 2, question: "What is the name of the traditional Mallorcan dance?", answers: ["Ball de bot", "Samba", "Flamenco", "Fandango"], correct: 0 },
-  { level: 2, question: "What instrument is commonly used in Mallorcan folk music?", answers: ["Xeremies (bagpipes)", "Guitar", "Accordion", "Castanets"], correct: 0 },
-  { level: 2, question: "Which local holiday celebrates the defeat of pirates in Palma?", answers: ["Moros y Cristianos", "Semana Santa", "Sant Antoni", "Sant Joan"], correct: 0 },
-  { level: 2, question: "What is the famous handcraft from Inca?", answers: ["Leather", "Ceramics", "Glass", "Linen"], correct: 0 },
-  { level: 2, question: "Which architectural style is La Seu cathedral known for?", answers: ["Gothic", "Romanesque", "Baroque", "Modernist"], correct: 0 },
-
-  // --- Level 3: History ---
-  { level: 3, question: "Who built the castle of Bellver in Palma?", answers: ["King James II", "Romans", "Moors", "Franco"], correct: 0 },
-  { level: 3, question: "When did Mallorca become part of Spain?", answers: ["13th century", "15th century", "10th century", "19th century"], correct: 0 },
-  { level: 3, question: "What ancient people built Talaiots on Mallorca?", answers: ["Talaiotic", "Roman", "Carthaginian", "Greek"], correct: 0 },
-  { level: 3, question: "Which Carthusian monastery is located in Valldemossa?", answers: ["Real Cartuja", "Monestir de Lluc", "Santuari de Sant Salvador", "Santa Maria"], correct: 0 },
-  { level: 3, question: "What was Palma called during the Moorish era?", answers: ["Medina Mayurqa", "Palomera", "Al Balansiya", "Maiorca"], correct: 0 },
-  { level: 3, question: "What major event in 1229 changed Mallorca's rule?", answers: ["Conquest by James I", "Roman invasion", "Moors arrival", "French Revolution"], correct: 0 },
-  { level: 3, question: "Which port town was historically known for piracy?", answers: ["Porto Cristo", "Alcudia", "Port d'Andratx", "Cala Rajada"], correct: 0 },
-  { level: 3, question: "Which famous cave system is in Porto Cristo?", answers: ["Cuevas del Drach", "Cova Tancada", "Cueva de Genova", "Sa Campana"], correct: 0 },
-  { level: 3, question: "What famous explorer was born in Palma?", answers: ["None - But Ramon Llull was from Mallorca", "Columbus", "Magellan", "Pizarro"], correct: 0 },
-  { level: 3, question: "What kind of fortress is 'Sa Punta de n'Amer'?", answers: ["Watchtower", "Castle", "Cathedral", "Prison"], correct: 0 },
-
-  // --- Level 4: Sports & Leisure ---
-  { level: 4, question: "Which sport is Rafael Nadal known for?", answers: ["Tennis", "Football", "Cycling", "Golf"], correct: 0 },
-  { level: 4, question: "Where is the Rafa Nadal Academy located?", answers: ["Manacor", "Palma", "Soller", "Valldemossa"], correct: 0 },
-  { level: 4, question: "Which sport is popular on the beaches of Mallorca?", answers: ["Beach volleyball", "Skiing", "Ice skating", "Rock climbing"], correct: 0 },
-  { level: 4, question: "Which cycling event attracts pros to Mallorca?", answers: ["Challenge Mallorca", "Tour de Tramuntana", "Vuelta de Espana", "Giro Balear"], correct: 0 },
-  { level: 4, question: "What can you rent easily on the beach?", answers: ["Sun loungers", "Skis", "Snowboards", "Tents"], correct: 0 },
-  { level: 4, question: "Which town is famous for water sports and a marina?", answers: ["Port d'Alcudia", "Valldemossa", "Bunyola", "Sineu"], correct: 0 },
-  { level: 4, question: "What activity is common in the Serra de Tramuntana?", answers: ["Hiking", "Snowboarding", "Jet skiing", "Surfing"], correct: 0 },
-  { level: 4, question: "Which town hosts an Ironman event?", answers: ["Alcudia", "Palma", "Campos", "Llucmajor"], correct: 0 },
-  { level: 4, question: "What is a common sailing destination in Mallorca?", answers: ["Cabrera Island", "Port de Soller", "Deià", "Esporles"], correct: 0 },
-  { level: 4, question: "Which traditional game is still played in villages?", answers: ["Boule", "Chess", "Cricket", "Dominoes"], correct: 0 },
-
-  // --- Level 5: Travel & Attractions ---
-  { level: 5, question: "Where are the Arcos Playa Apartments located?", answers: ["S'Illot", "Palma", "Valldemossa", "Inca"], correct: 0 },
-  { level: 5, question: "What is special about Cala Morlanda?", answers: ["Beautiful hidden cove", "Big city", "Zoo", "Castle"], correct: 0 },
-  { level: 5, question: "Which attraction has a concert inside a cave?", answers: ["Cuevas del Drach", "Bellver Castle", "Port de Soller", "Puig Major"], correct: 0 },
-  { level: 5, question: "What do Arcos Playa Apartments offer?", answers: ["Pool, bar, entertainment", "Helicopter tours", "Golf", "Theatre shows"], correct: 0 },
-  { level: 5, question: "Which attraction is best for sunset views?", answers: ["Sa Foradada", "Palma Aquarium", "Alcudia Market", "Manacor Museum"], correct: 0 },
-  { level: 5, question: "Which town has Roman ruins?", answers: ["Alcudia", "Palma", "Felanitx", "Andratx"], correct: 0 },
-  { level: 5, question: "Where is Bellver Castle located?", answers: ["Palma", "Soller", "Cala Ratjada", "Valldemossa"], correct: 0 },
-  { level: 5, question: "Which site is a UNESCO heritage for cultural landscape?", answers: ["Serra de Tramuntana", "Cala Bona", "Playa de Palma", "Portals Nous"], correct: 0 },
-  { level: 5, question: "What is a popular souvenir from Mallorca?", answers: ["Pearls", "Copper pots", "Sand sculptures", "Wool hats"], correct: 0 },
-  { level: 5, question: "Which famous lookout is near Formentor?", answers: ["Mirador Es Colomer", "Torre de Canyamel", "Castell d'Alaró", "Son Marroig"], correct: 0 },
-]
-]; // Will load 100 questions here later
+  // --- Level 2: History & Culture ---
+  {
+    question: "Which famous composer spent the winter of 1838–39 in Valldemossa?",
+    answers: [
+      { text: "Frédéric Chopin", correct: true },
+      { text: "Ludwig van Beethoven", correct: false },
+      { text: "Johann Sebastian Bach", correct: false },
+      { text: "Wolfgang Amadeus Mozart", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the Gothic-style cathedral in Palma?",
+    answers: [
+      { text: "La Seu", correct: true },
+      { text: "La Sagrada Familia", correct: false },
+      { text: "La Almudena", correct: false },
+      { text: "La Catedral de Santa María", correct: false }
+    ]
+  },
+  {
+    question: "Which ancient civilization founded Palma as a Roman camp?",
+    answers: [
+      { text: "Romans", correct: true },
+      { text: "Phoenicians", correct: false },
+      { text: "Greeks", correct: false },
+      { text: "Carthaginians", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the circular castle located near Palma?",
+    answers: [
+      { text: "Bellver Castle", correct: true },
+      { text: "Alcázar", correct: false },
+      { text: "Castillo de San Carlos", correct: false },
+      { text: "Castillo de Capdepera", correct: false }
+    ]
+  },
+  {
+    question: "Which religious figure is considered the patron saint of Mallorca?",
+    answers: [
+      { text: "Santa Catalina Thomàs", correct: true },
+      { text: "Saint James", correct: false },
+      { text: "Saint George", correct: false },
+      { text: "Saint Teresa", correct: false }
+    ]
+  },
+  {
+    question: "What is the name of the traditional Mallorcan dance performed during festivals?",
+    answers: [
+      { text: "Ball de bot", correct: true },
+      { text: "Flamenco", correct: false },
+      { text: "Sardana", correct: false },
+      { text: "Jota", correct: false }
+    ]
+  },
+]; 
 let currentLevel = 1;
 let currentQuestionIndex = 0;
 let score = 0;
