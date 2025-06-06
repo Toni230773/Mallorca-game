@@ -179,17 +179,14 @@ function selectAnswer(selected) {
   if (selected === correct) {
     score++;
   }
-  nextBtn.style.display = "inline-block";
-}
-
-nextBtn.addEventListener("click", () => {
   currentIndex++;
   if (currentIndex < questions.length) {
     showQuestion();
   } else {
     showScore();
   }
-});
+}
+
 
 function showScore() {
   resetState();
