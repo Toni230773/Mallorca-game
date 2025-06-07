@@ -233,8 +233,6 @@ function showScore() {
   playAgainBtn.style.display = "inline-block"; // Show the button
 }
 
-}
-
 
 showQuestion();
 
