@@ -147,11 +147,14 @@ const questions = [
 ]
 
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+  const newArray = [...array]; // Create a copy to avoid mutating the original array
+  for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
+  return newArray;
 }
+
 
 function shuffleAnswers(questions) {
   return questions.map(({ question, answers, correct }) => {
@@ -166,9 +169,9 @@ function shuffleAnswers(questions) {
   });
 }
 
-const shuffledQuizData = shuffleAnswers(questions);
+let shuffledQuizData = shuffleAnswers(questions);
 shuffleArray(shuffledQuizData); // Shuffles the array in place
-const gameData = shuffledQuizData; // Assign the shuffled array to gameData
+let gameData = shuffledQuizData; // Assign the shuffled array to gameData
 
 let currentIndex = 0;
 let score = 0;
@@ -211,6 +214,16 @@ function selectAnswer(selectedIndex) {
     showScore();
   }
 }
+
+playAgainBtn.addEventListener("click", () => {
+  currentIndex = 0;
+  score = 0;
+  playAgainBtn.style.display = "none"; // Hide the button
+  const reshuffledQuestions = shuffleAnswers(questions);
+  gameData = shuffleArray(reshuffledQuestions);
+  showQuestion();
+});
+
 
 
 function showScore() {
