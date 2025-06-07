@@ -235,3 +235,14 @@ function showScore() {
 
 showQuestion();
 
+let firstCorrectCount = 0;
+let totalRuns = 1000;
+
+for (let i = 0; i < totalRuns; i++) {
+  const shuffled = shuffleAnswers(questions);
+  shuffled.forEach(q => {
+    if (q.correctIndex === 0) firstCorrectCount++;
+  });
+}
+
+console.log(`Correct answer was first ${firstCorrectCount} out of ${totalRuns * questions.length} times.`);
