@@ -146,53 +146,6 @@ const questions = [
   },
 ]
 
-
-let currentIndex = 0;
-let score = 0;
-
-const questionEl = document.getElementById("question");
-const answersEl = document.getElementById("answers");
-const nextBtn = document.getElementById("nextBtn");
-const scoreEl = document.getElementById("score");
-
-function showQuestion() {
-  resetState();
-  let currentQuestion = gameData[currentIndex];
-  questionEl.innerText = currentQuestion.question;
-
-  currentQuestion.answers.forEach(answer => {
-    const btn = document.createElement("button");
-    btn.innerText = answer;
-    btn.addEventListener("click", () => selectAnswer(answer));
-    answersEl.appendChild(btn);
-  });
-}
-
-function resetState() {
-  answersEl.innerHTML = "";
-  scoreEl.innerText = "";
-}
-
-function selectAnswer(selected) {
-  const correct = gameData[currentIndex].correct;
-  if (selected === correct) {
-    score++;
-  }
-  currentIndex++;
-  if (currentIndex < questions.length) {
-    showQuestion();
-  } else {
-    showScore();
-  }
-}
-
-
-function showScore() {
-  resetState();
-  questionEl.innerText = `Quiz Complete!`;
-  scoreEl.innerText = `Your score: ${score} / ${questions.length}`;
-}
-
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -214,7 +167,56 @@ function shuffleAnswers(questions) {
 }
 
 const shuffledQuizData = shuffleAnswers(questions);
-const gameData = shuffleArray(shuffledQuizData);
+shuffleArray(shuffledQuizData); // Shuffles the array in place
+const gameData = shuffledQuizData; // Assign the shuffled array to gameData
+
+let currentIndex = 0;
+let score = 0;
+
+const questionEl = document.getElementById("question");
+const answersEl = document.getElementById("answers");
+const nextBtn = document.getElementById("nextBtn");
+const scoreEl = document.getElementById("score");
+
+function showQuestion() {
+  resetState();
+  let currentQuestion = gameData[currentIndex];
+  questionEl.innerText = currentQuestion.question;
+
+  currentQuestion.answers.forEach((answer, index) => {
+    const btn = document.createElement("button");
+    btn.innerText = answer;
+    btn.addEventListener("click", () => selectAnswer(index));
+    answersEl.appendChild(btn);
+  });
+}
+
+
+function resetState() {
+  answersEl.innerHTML = "";
+  scoreEl.innerText = "";
+}
+
+function selectAnswer(selectedIndex) {
+  const correctIndex = gameData[currentIndex].correctIndex;
+  if (selectedIndex === correctIndex) {
+    score++;
+  }
+  currentIndex++;
+  if (currentIndex < gameData.length) {
+    showQuestion();
+  } else {
+    showScore();
+  }
+}
+
+
+function showScore() {
+  resetState();
+  questionEl.innerText = `Quiz Complete!`;
+  scoreEl.innerText = `Your score: ${score} / ${questions.length}`;
+}
+
 
 showQuestion();
 
