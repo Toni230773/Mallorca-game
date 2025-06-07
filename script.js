@@ -217,6 +217,9 @@ function showScore() {
   resetState();
   questionEl.innerText = `Quiz Complete!`;
   scoreEl.innerText = `Your score: ${score} / ${questions.length}`;
+  playAgainBtn.style.display = "inline-block"; // Show the button
+}
+
 }
 
 
