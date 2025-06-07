@@ -177,6 +177,8 @@ const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const nextBtn = document.getElementById("nextBtn");
 const scoreEl = document.getElementById("score");
+const playAgainBtn = document.getElementById("playAgainBtn");
+
 
 function showQuestion() {
   resetState();
