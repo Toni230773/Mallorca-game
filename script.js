@@ -170,8 +170,8 @@ function shuffleAnswers(questions) {
 }
 
 let shuffledQuizData = shuffleAnswers(questions);
-shuffleArray(shuffledQuizData); // Shuffles the array in place
-let gameData = shuffledQuizData; // Assign the shuffled array to gameData
+let gameData = shuffleArray(shuffledQuizData); // Shuffles the array in place
+
 
 let currentIndex = 0;
 let score = 0;
