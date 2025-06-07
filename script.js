@@ -157,7 +157,7 @@ const scoreEl = document.getElementById("score");
 
 function showQuestion() {
   resetState();
-  let currentQuestion = questions[currentIndex];
+  let currentQuestion = gameData[currentIndex];
   questionEl.innerText = currentQuestion.question;
 
   currentQuestion.answers.forEach(answer => {
@@ -174,7 +174,7 @@ function resetState() {
 }
 
 function selectAnswer(selected) {
-  const correct = questions[currentIndex].correct;
+  const correct = gameData[currentIndex].correct;
   if (selected === correct) {
     score++;
   }
@@ -192,6 +192,29 @@ function showScore() {
   questionEl.innerText = `Quiz Complete!`;
   scoreEl.innerText = `Your score: ${score} / ${questions.length}`;
 }
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function shuffleAnswers(questions) {
+  return questions.map(({ question, answers, correct }) => {
+    const shuffledAnswers = [...answers];
+    shuffleArray(shuffledAnswers);
+    const correctIndex = shuffledAnswers.indexOf(correct);
+    return {
+      question,
+      answers: shuffledAnswers,
+      correctIndex
+    };
+  });
+}
+
+const shuffledQuizData = shuffleAnswers(questions);
+const gameData = shuffleArray(shuffledQuizData);
 
 showQuestion();
 
