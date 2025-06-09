@@ -158,8 +158,7 @@ function shuffleArray(array) {
 
 function shuffleAnswers(questions) {
   return questions.map(({ question, answers, correct }) => {
-    const shuffledAnswers = [...answers];
-    shuffleArray(shuffledAnswers);
+    const shuffledAnswers = shuffleArray(shuffledAnswers);
     const correctIndex = shuffledAnswers.indexOf(correct);
     return {
       question,
